@@ -1,0 +1,2 @@
+const e=document.querySelector(".login-form");e.querySelector(".login-form button");e.addEventListener("submit",(function(t){t.preventDefault();const l=t.currentTarget;let r={};console.dir(l.elements),""===l.password.value||""===l.email.value?alert("Всі поля повинні бути заповнені"):(r={email:l.elements.email.value,password:l.elements.password.value},e.reset())}));
+//# sourceMappingURL=task-08.fd3dc55f.js.map
