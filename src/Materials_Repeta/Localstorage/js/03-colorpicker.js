@@ -1,56 +1,49 @@
-// import colorCardTpl from '../templates/color-card.hbs';
-// import colorCardsTpl from '../templates/color-cards.hbs';
-// import colors from './colors.json';
-// import '../css/common.css';
-// import '../css/colorpicker.css';
+import CardTp1 from '../templates-js/CardTp1';
+import colors from './colors.json';
+import '../css/common.css';
+import '../css/colorpicker.css';
 
-// const paletteContainer = document.querySelector('.js-palette');
-// const cardsMarkup = createColorCardsMarkup(colors);
-// console.log(colors);
+const paletteContainer = document.querySelector('.js-palette');
+const cardsMarkup = createColorCardsMarkup(colors);
 
-// paletteContainer.insertAdjacentHTML('beforeend', cardsMarkup);
+paletteContainer.insertAdjacentHTML('beforeend', cardsMarkup);
 
 // paletteContainer.addEventListener('click', onPaletteContainerClick);
 
-// function createColorCardsMarkup(colors) {
-// console.log(colors.map(color => colorCardTpl(color)).join(''));
+function createColorCardsMarkup(colors) {
+  return colors.map(color => CardTp1(color)).join('');
+}
 
-// return colors.map(color => colorCardTpl(color)).join('');
+paletteContainer.addEventListener('click', onPaletteContainerClick);
 
-// return colors.map(colorCardTpl).join('');
-// return colorCardsTpl(colors);
-// }
+function onPaletteContainerClick(evt) {
+  const isColorSwatchEl = evt.target.classList.contains('color-swatch');
 
-// paletteContainer.addEventListener('click', onPaletteContainerClick);
+  if (!isColorSwatchEl) {
+    return;
+  }
+  const swatchEl = evt.target;
 
-// function onPaletteContainerClick(evt) {
-//   const isColorSwatchEl = evt.target.classList.contains('color-swatch');
+  const parentColorCard = swatchEl.closest('.color-card');
 
-//   if (!isColorSwatchEl) {
-//     return;
-//   }
-//   const swatchEl = evt.target;
-//   // console.log(swatchEl);
-//   const parentColorCard = swatchEl.closest('.color-card');
+  removeActiveCardClass();
 
-//   removeActiveCardClass();
+  addActiveCardClass(parentColorCard);
 
-//   addActiveCardClass(parentColorCard);
+  setBodyBgColor(swatchEl.dataset.hex);
+}
 
-//   setBodyBgColor(swatchEl.dataset.hex);
-// }
+function setBodyBgColor(color) {
+  document.body.style.backgroundColor = color;
+}
 
-// function setBodyBgColor(color) {
-//   document.body.style.backgroundColor = color;
-// }
+function removeActiveCardClass() {
+  const currentActiveCard = document.querySelector('.color-card.is-active');
+  if (currentActiveCard) {
+    currentActiveCard.classList.remove('is-active');
+  }
+}
 
-// function removeActiveCardClass() {
-//   const currentActiveCard = document.querySelector('.color-card.is-active');
-//   if (currentActiveCard) {
-//     currentActiveCard.classList.remove('is-active');
-//   }
-// }
-
-// function addActiveCardClass(card) {
-//   card.classList.add('is-active');
-// }
+function addActiveCardClass(card) {
+  card.classList.add('is-active');
+}
