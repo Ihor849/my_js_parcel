@@ -1,5 +1,5 @@
 body {
-  font-family: "Prompt", sans-serif;
+  font-family: 'Prompt', sans-serif;
   padding: 16px;
   margin: 0;
   box-sizing: border-box;
@@ -98,4 +98,7 @@ img {
   background-color: #2196f3;
   color: #dff0d8;
   transition: all 0.5s;
+}
+.colorB {
+  color: black;
 }
